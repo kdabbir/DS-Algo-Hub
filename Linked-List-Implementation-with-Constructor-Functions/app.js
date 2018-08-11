@@ -119,5 +119,63 @@ LinkedList.prototype.removeTail = function(){
  }
 }
 
-newll.removeTail();
-console.log(newll);
+// newll.removeTail();
+// console.log(newll);
+
+// Searching a value in a linkedlist
+// PseudoCode:
+
+// - Assign current head node to a flag variable
+// - Initiate a while loop checking if flag is empty.
+// - Check current node value and compare with search value, return if its true
+// - Else make current node as next node.
+
+
+LinkedList.prototype.searchValue = function(searchValue){
+    var currentNode = this.head;
+    while(currentNode){
+        if(currentNode.value === searchValue){
+            return currentNode.value;
+        }
+        currentNode = currentNode.next;
+    }
+    return null;
+}; 
+
+var searchLL = new LinkedList();
+searchLL.addToHead(56);
+searchLL.addToHead(57);
+searchLL.addToTail(50);
+searchLL.addToHead('hello');
+searchLL.addToHead('hello');
+searchLL.addToTail(50);
+
+// console.log(searchLL.searchValue('hello'));
+
+
+// Implementing indexOf - Finding indexes of the value in the linked list.
+
+// Pseudocode:
+
+// - Initialize an array to store the indexes & counter flag to check current position number
+// - Make currentHead variable with the current head.
+// - Initiate a while loop checking if currentHead is empty.
+// - Else, it will compare the value against input and add counter.
+// - Return array.
+
+LinkedList.prototype.indexOf = function(value){
+    var indexArray = [];
+    var currentNode = this.head;
+    var counter = 0;
+    while(currentNode){
+        if(currentNode.value === value){
+            indexArray.push(counter); 
+        }
+        currentNode = currentNode.next;
+        counter++;
+    }
+    return indexArray;
+};
+console.log(searchLL);
+
+console.log(searchLL.indexOf(50));

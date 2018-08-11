@@ -37,3 +37,23 @@ Pseudocode:
 - Else, take tail node previous element.
 - Make previous element the new tail element.
 - Check if tail is empty, then make head as empty. else make next as null.
+
+# 5) Searching a value in a linkedlist
+
+PseudoCode:
+
+- Assign current head node to a flag variable
+- Initiate a while loop checking if flag is empty.
+- Check current node value and compare with search value, return if its true
+- Else make current node as next node.
+
+
+# 6) Implementing indexOf - Finding all indexes of the value in the linked list.
+
+Pseudocode:
+
+- Initialize an array to store the indexes & counter flag to check current position number
+- Make currentHead variable with the current head.
+- Initiate a while loop checking if currentHead is empty.
+- Else, it will compare the value against input and add counter.
+- Return array.
