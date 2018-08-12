@@ -50,6 +50,7 @@ bstObj.InsertNode(60);
 bstObj.InsertNode(100);
 bstObj.InsertNode(59);
 bstObj.InsertNode(85);
+bstObj.InsertNode(105);
 
 // console.log(bstObj);
 
@@ -106,10 +107,13 @@ BST.prototype.depthFirstTraversal = function(iteratorFunc, order){
     if(this.left) this.left.depthFirstTraversal(iteratorFunc,order);
     if(order === "in-order") iteratorFunc(this.value);
     if(this.right) this.right.depthFirstTraversal(iteratorFunc,order);
+    if(order === "post-order") iteratorFunc(this.value);
 };
 
 function log(value){
     console.log(value);
 }
+// console.log(bstObj);
 // console.log(bstObj.depthFirstTraversal(log,"in-order"));
-console.log(bstObj.depthFirstTraversal(log,"pre-order"));
+//console.log(bstObj.depthFirstTraversal(log,"pre-order"));
+bstObj.depthFirstTraversal(log,"post-order");
