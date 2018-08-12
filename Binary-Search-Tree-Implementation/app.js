@@ -58,18 +58,17 @@ BST.prototype.containsValue = function(value){
       return false;
   }
   if(value === this.value){
-      console.log(true);
       return true;
   } else if (value > this.value){
       if(!this.right) return false; 
-      else this.right.containsValue(value);
+      else return this.right.containsValue(value);
   } else {
       if(!this.left) return false;
-      else this.left.containsValue(value);
+      else return this.left.containsValue(value);
   }
 };
 
-// Depth First Traversal for pre-order/in-order:
+// Depth First Traversal for in-order, pre-order and post-order:
 
 // For In-Order 
 
@@ -81,13 +80,21 @@ BST.prototype.containsValue = function(value){
 // - As left values becomes empty, it will take parent node values (this.value).
 // - Similar way for right node.
 
-// For Post-order
+// For Pre-order
 
 // Pseudocode:
 
 // - First take the parent value (this.value)
 // - Next run recursion against all left node values
 // - Next run recursion against all right node values.
+
+// For Post-order
+
+// Pseudocode:
+
+// - First run recursion against all left node values
+// - Next run recursion against all right node values.
+// - Next take the parent value (this.value)
 
 
 BST.prototype.depthFirstTraversal = function(iteratorFunc, order){
@@ -127,6 +134,30 @@ BST.prototype.breadthFirstTraversal = function(iteratorFunc){
 }
 
 
+BST.prototype.getMinVal = function(){
+  if(!this.value){
+    return null;
+  }
+  if(this.left){
+    return this.left.getMinVal();
+  } else {
+    return this.value;
+}
+}
+
+
+BST.prototype.getMaxVal = function(){
+  if(!this.value){
+    return null;
+  }
+  if(this.right){
+    return this.right.getMaxVal();
+  } else {
+    return this.value;
+}
+}
+
+
 var bstObj = new BST(50);
 
 bstObj.InsertNode(30);
@@ -141,6 +172,8 @@ bstObj.InsertNode(59);
 bstObj.InsertNode(85);
 bstObj.InsertNode(105);
 
+var output = bstObj.containsValue(35);
+console.log(output);
 function log(value){
   console.log(value);
 }
@@ -151,4 +184,4 @@ function logBFS(node){
 }
 //  bstObj.depthFirstTraversal(log,'post-order');
 
-bstObj.breadthFirstTraversal(logBFS);
+// bstObj.breadthFirstTraversal(logBFS);
