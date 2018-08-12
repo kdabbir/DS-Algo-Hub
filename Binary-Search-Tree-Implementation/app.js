@@ -1,9 +1,9 @@
 //BST initially is null and later has left and right child nodes to it.
 
 function BST(value){
-    this.value = value;
-    this.left = null;
-    this.right = null;
+  this.value = value;
+  this.left = null;
+  this.right = null;
 }
 
 
@@ -19,38 +19,26 @@ function BST(value){
 // - Else, run recursive loop for right node with the same value
 
 BST.prototype.InsertNode = function(value){
-    var newNode = new BST(value);
-    if(!value && value!=0){
-        return null;
-    } else if (value <= this.value){
-        if(!this.left){
-            this.left = newNode;
-        } else {
-            this.left.InsertNode(value);
-        }
-        return value;
-    } else {
-        if(!this.right){
-            this.right = newNode;
-        } else {
-            this.right.InsertNode(value);
-        }
-        return value;
-    }
+  var newNode = new BST(value);
+  if(!value && value!=0){
+      return null;
+  } else if (value <= this.value){
+      if(!this.left){
+          this.left = newNode;
+      } else {
+          this.left.InsertNode(value);
+      }
+      return value;
+  } else {
+      if(!this.right){
+          this.right = newNode;
+      } else {
+          this.right.InsertNode(value);
+      }
+      return value;
+  }
 }
-var bstObj = new BST(50);
 
-bstObj.InsertNode(30);
-bstObj.InsertNode(20);
-bstObj.InsertNode(45);
-bstObj.InsertNode(10);
-bstObj.InsertNode(35);
-bstObj.InsertNode(70);
-bstObj.InsertNode(60);
-bstObj.InsertNode(100);
-bstObj.InsertNode(59);
-bstObj.InsertNode(85);
-bstObj.InsertNode(105);
 
 // console.log(bstObj);
 
@@ -65,20 +53,20 @@ bstObj.InsertNode(105);
 
 
 BST.prototype.containsValue = function(value){
-    if(!value & value!=0){
-         console.log(false);
-        return false;
-    }
-    if(value === this.value){
-        console.log(true);
-        return true;
-    } else if (value > this.value){
-        if(!this.right) return false; 
-        else this.right.containsValue(value);
-    } else {
-        if(!this.left) return false;
-        else this.left.containsValue(value);
-    }
+  if(!value & value!=0){
+       console.log(false);
+      return false;
+  }
+  if(value === this.value){
+      console.log(true);
+      return true;
+  } else if (value > this.value){
+      if(!this.right) return false; 
+      else this.right.containsValue(value);
+  } else {
+      if(!this.left) return false;
+      else this.left.containsValue(value);
+  }
 };
 
 // Depth First Traversal for pre-order/in-order:
@@ -103,17 +91,64 @@ BST.prototype.containsValue = function(value){
 
 
 BST.prototype.depthFirstTraversal = function(iteratorFunc, order){
-    if(order ==="pre-order") iteratorFunc(this.value);
-    if(this.left) this.left.depthFirstTraversal(iteratorFunc,order);
-    if(order === "in-order") iteratorFunc(this.value);
-    if(this.right) this.right.depthFirstTraversal(iteratorFunc,order);
-    if(order === "post-order") iteratorFunc(this.value);
+  if(order ==="pre-order") iteratorFunc(this.value);
+  if(this.left) this.left.depthFirstTraversal(iteratorFunc,order);
+  if(order === "in-order") iteratorFunc(this.value);
+  if(this.right) this.right.depthFirstTraversal(iteratorFunc,order);
+  if(order === "post-order") iteratorFunc(this.value);
 };
 
-function log(value){
-    console.log(value);
-}
 // console.log(bstObj);
 // console.log(bstObj.depthFirstTraversal(log,"in-order"));
 //console.log(bstObj.depthFirstTraversal(log,"pre-order"));
-bstObj.depthFirstTraversal(log,"post-order");
+// bstObj.depthFirstTraversal(log,"post-order");
+
+
+//Breadth first traversal
+// Pseudocode:
+// - Initialize an array which stores current level elements.
+// - Iterate through each element and invoke iteratorFunc with value
+// - If the node has left node, push node's left node to array
+// - If it has right node, push node's right node to array.
+
+
+
+BST.prototype.breadthFirstTraversal = function(iteratorFunc){
+  var queue = [this];
+  while(queue.length){
+      var currentNode = queue.shift();
+      if(currentNode){
+      iteratorFunc(currentNode);
+      // console.log(currentNode.value);
+      if(this.left) queue.push(currentNode.left);
+      if(this.right) queue.push(currentNode.right);
+    }
+  }
+}
+
+
+var bstObj = new BST(50);
+
+bstObj.InsertNode(30);
+bstObj.InsertNode(20);
+bstObj.InsertNode(45);
+bstObj.InsertNode(10);
+bstObj.InsertNode(35);
+bstObj.InsertNode(70);
+bstObj.InsertNode(60);
+bstObj.InsertNode(100);
+bstObj.InsertNode(59);
+bstObj.InsertNode(85);
+bstObj.InsertNode(105);
+
+function log(value){
+  console.log(value);
+}
+
+
+function logBFS(node){
+  console.log(node.value);
+}
+//  bstObj.depthFirstTraversal(log,'post-order');
+
+bstObj.breadthFirstTraversal(logBFS);
