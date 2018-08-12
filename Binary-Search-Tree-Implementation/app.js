@@ -80,11 +80,36 @@ BST.prototype.containsValue = function(value){
     }
 };
 
-console.log("" + bstObj.containsValue(30));
+// Depth First Traversal for pre-order/in-order:
+
+// For In-Order 
+
+// Pseudocode:
+
+// - Objective is to get the left innermost node. From the initial left node, run recursion till it reaches left as null
+// - Call iteratorFunction (we can add to array or console log here)
+// - This will get all left values from bottom to top.
+// - As left values becomes empty, it will take parent node values (this.value).
+// - Similar way for right node.
+
+// For Post-order
+
+// Pseudocode:
+
+// - First take the parent value (this.value)
+// - Next run recursion against all left node values
+// - Next run recursion against all right node values.
 
 
-BST.prototype.depthFirstTraversal = function(iteratorFunc){
-    if(this.left) this.left.depthFirstTraversal(iteratorFunc);
-    iteratorFunc(this.value);
-    if(this.right) this.right.depthFirstTraversal(iteratorFunc);
+BST.prototype.depthFirstTraversal = function(iteratorFunc, order){
+    if(order ==="pre-order") iteratorFunc(this.value);
+    if(this.left) this.left.depthFirstTraversal(iteratorFunc,order);
+    if(order === "in-order") iteratorFunc(this.value);
+    if(this.right) this.right.depthFirstTraversal(iteratorFunc,order);
 };
+
+function log(value){
+    console.log(value);
+}
+// console.log(bstObj.depthFirstTraversal(log,"in-order"));
+console.log(bstObj.depthFirstTraversal(log,"pre-order"));
