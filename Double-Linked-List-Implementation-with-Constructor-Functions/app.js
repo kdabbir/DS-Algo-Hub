@@ -1,14 +1,14 @@
 //LinkedList initially is null and later has head and tail nodes in it.
 
 function LinkedList(){
-    this.head = null;
-    this.tail = null;
+  this.head = null;
+  this.tail = null;
 }
 
 function Node(value, next, prev ){
-    this.value = value;
-    this.prev = prev;
-    this.next = next;
+  this.value = value;
+  this.prev = prev;
+  this.next = next;
 }
 
 //Create new nodes.
@@ -23,19 +23,20 @@ var Node2 = new Node(200, 'Node3',null);
 // - Make current head to new node.
 
 LinkedList.prototype.addToHead = function(value){
-   var newNode =  new Node(value, this.head, null);
-    if(this.head){
-        this.head.prev = newNode;
-    } else {
-        this.tail = newNode;
-    }
-    this.head = newNode;
+ var newNode =  new Node(value, this.head, null);
+  if(this.head){
+      this.head.prev = newNode;
+  } else {
+      this.tail = newNode;
+  }
+  this.head = newNode;
 };
 
 var ll= new LinkedList();
 ll.addToHead(100);
 ll.addToHead(300);
 ll.addToHead(400);
+
 // console.log(ll);
 
 // Insertion of nodes at tail
@@ -48,13 +49,13 @@ ll.addToHead(400);
 // - Make current tail to new node.
 
 LinkedList.prototype.addToTail = function(value) {
-    var tailNode = new Node(value, null, this.tail);
-    if(this.head) {
-        this.tail.next = tailNode;
-    } else {
-        this.head = tailNode;
-    }
-    this.tail = tailNode;
+  var tailNode = new Node(value, null, this.tail);
+  if(this.head) {
+      this.tail.next = tailNode;
+  } else {
+      this.head = tailNode;
+  }
+  this.tail = tailNode;
 };
 ll.addToTail(500);
 
@@ -72,25 +73,26 @@ ll.addToTail(500);
 // - Else, assign headnode prev to null (as it is the new head node)
 // - Return value.
 LinkedList.prototype.removeHead = function(){
-    if(this.head){
-        var currentValue = this.head.value;
-        //getting NextNode
-        var nextNode = this.head.next;
-        this.head = nextNode;
-        if(this.head){
-            nextNode.prev= null;
-        } else {
-            this.tail = null;
-        }
-        return currentValue;
-    } else {
-        return null;
-    }
+  if(this.head){
+      var currentValue = this.head.value;
+      //getting NextNode
+      var nextNode = this.head.next;
+      this.head = nextNode;
+      if(this.head){
+          nextNode.prev= null;
+      } else {
+          this.tail = null;
+      }
+      return currentValue;
+  } else {
+      return null;
+  }
 };
 var newll = new LinkedList();
 newll.addToTail(500);
 newll.addToTail(600);
 newll.addToTail(700);
+console.log(newll);
 
 //  newll.removeHead();
 
@@ -104,19 +106,19 @@ newll.addToTail(700);
 // - Check if tail is empty, then make head as empty. else make next as null.
 
 LinkedList.prototype.removeTail = function(){
- if(!this.head){
-    return null;
- } else {
-    var currentValue = this.tail.value;
-    var previousNode = this.tail.prev;
-    this.tail = previousNode;
-    if(this.tail){
-        previousNode.next = null;
-    } else{
-        this.head = null;
-    }
-    return currentValue;
- }
+if(!this.head){
+  return null;
+} else {
+  var currentValue = this.tail.value;
+  var previousNode = this.tail.prev;
+  this.tail = previousNode;
+  if(this.tail){
+      previousNode.next = null;
+  } else{
+      this.head = null;
+  }
+  return currentValue;
+}
 }
 
 // newll.removeTail();
@@ -132,14 +134,14 @@ LinkedList.prototype.removeTail = function(){
 
 
 LinkedList.prototype.searchValue = function(searchValue){
-    var currentNode = this.head;
-    while(currentNode){
-        if(currentNode.value === searchValue){
-            return currentNode.value;
-        }
-        currentNode = currentNode.next;
-    }
-    return null;
+  var currentNode = this.head;
+  while(currentNode){
+      if(currentNode.value === searchValue){
+          return currentNode.value;
+      }
+      currentNode = currentNode.next;
+  }
+  return null;
 }; 
 
 var searchLL = new LinkedList();
@@ -164,18 +166,18 @@ searchLL.addToTail(50);
 // - Return array.
 
 LinkedList.prototype.indexOf = function(value){
-    var indexArray = [];
-    var currentNode = this.head;
-    var counter = 0;
-    while(currentNode){
-        if(currentNode.value === value){
-            indexArray.push(counter); 
-        }
-        currentNode = currentNode.next;
-        counter++;
-    }
-    return indexArray;
+  var indexArray = [];
+  var currentNode = this.head;
+  var counter = 0;
+  while(currentNode){
+      if(currentNode.value === value){
+          indexArray.push(counter); 
+      }
+      currentNode = currentNode.next;
+      counter++;
+  }
+  return indexArray;
 };
-console.log(searchLL);
+// console.log(searchLL);
 
-console.log(searchLL.indexOf(50));
+// console.log(searchLL.indexOf(50));

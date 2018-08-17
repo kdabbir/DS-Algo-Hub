@@ -1,4 +1,4 @@
-# Linked-lists implementation in Javascript.
+# Binary Search trees implementation in Javascript.
 Below functionalities of Binary Search Tree are implemented: 
 
 # 1) Insert a new node in BST.
