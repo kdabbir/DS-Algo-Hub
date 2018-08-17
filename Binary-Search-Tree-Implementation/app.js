@@ -127,8 +127,8 @@ BST.prototype.breadthFirstTraversal = function(iteratorFunc){
       if(currentNode){
       iteratorFunc(currentNode);
       // console.log(currentNode.value);
-      if(this.left) queue.push(currentNode.left);
-      if(this.right) queue.push(currentNode.right);
+      if(currentNode.left) queue.push(currentNode.left);
+      if(currentNode.right) queue.push(currentNode.right);
     }
   }
 }
@@ -171,12 +171,12 @@ bstObj.InsertNode(100);
 bstObj.InsertNode(59);
 bstObj.InsertNode(85);
 bstObj.InsertNode(105);
-
+console.log(bstObj);
 var output = bstObj.containsValue(35);
-console.log(output);
-function log(value){
-  console.log(value);
-}
+// console.log(output);
+// function log(value){
+//   console.log(value);
+// }
 
 
 function logBFS(node){
@@ -184,4 +184,4 @@ function logBFS(node){
 }
 //  bstObj.depthFirstTraversal(log,'post-order');
 
-// bstObj.breadthFirstTraversal(logBFS);
+ bstObj.breadthFirstTraversal(logBFS);
