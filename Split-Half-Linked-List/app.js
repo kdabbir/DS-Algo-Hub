@@ -27,26 +27,35 @@ sll.push(3);
 sll.push(4);
 sll.push(5);
 
-console.log(sll);
+//console.log(sll);
 
 
-const reversesll = (ll) => {
-  let llArr = [];
+const splitHalfSLL = (ll) => {
+  let linkedListArr = [];
   if(!ll.head || !ll.head.next) return ll;
   let currHead = ll.head;
-  llArr.push(currHead);
-
+  linkedListArr.push(currHead);
   while(currHead.next){
     currHead = currHead.next;
-    llArr.push(currHead);
+    linkedListArr.push(currHead);
   }
-  ll.head = null;
-  while(llArr.length > 0){
-    ll.push((llArr.pop()).value);
+  const halfCount = Math.ceil(linkedListArr.length/2);
+  const arrLength = linkedListArr.length;
+  const llArr = [new LinkedList(), new LinkedList()];
+  for(let i=0; i <= arrLength; i++){
+    let currNode = linkedListArr.shift();
+    if(currNode) currNodeValue = currNode.value;
+    else 
+      currNodeValue = null;
+    if(i + 1 <= halfCount) {
+      llArr[0].push(currNodeValue);
+    } else {
+      llArr[1].push(currNodeValue);
+    }
   }
- return ll;
+  return llArr;
 };
 
 // //test it
- console.log(reversesll(sll));
+ console.log(splitHalfSLL(sll));
 //{head: {value:5, next:{value: 4, next: {value: 3, next: {value:2, next:{value:1, next: null}}}}}}
