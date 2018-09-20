@@ -39,6 +39,20 @@ BST.prototype.InsertNode = function(value){
   }
 }
 
+var bstObj = new BST(50);
+
+bstObj.InsertNode(30);
+bstObj.InsertNode(20);
+bstObj.InsertNode(45);
+bstObj.InsertNode(10);
+bstObj.InsertNode(35);
+bstObj.InsertNode(70);
+bstObj.InsertNode(60);
+bstObj.InsertNode(100);
+bstObj.InsertNode(59);
+bstObj.InsertNode(85);
+bstObj.InsertNode(105);
+console.log(bstObj);
 
 // console.log(bstObj);
 
@@ -54,7 +68,7 @@ BST.prototype.InsertNode = function(value){
 
 BST.prototype.containsValue = function(value){
   if(!value & value!=0){
-       console.log(false);
+      // console.log(false);
       return false;
   }
   if(value === this.value){
@@ -70,6 +84,11 @@ BST.prototype.containsValue = function(value){
 
 // Depth First Traversal for in-order, pre-order and post-order:
 
+// Inorder Traversal (Left-Root-Right)
+// Preorder Traversal (Root-Left-Right)
+// Postorder Traversal (Left-Right-Root)
+
+
 // For In-Order 
 
 // Pseudocode:
@@ -79,6 +98,20 @@ BST.prototype.containsValue = function(value){
 // - This will get all left values from bottom to top.
 // - As left values becomes empty, it will take parent node values (this.value).
 // - Similar way for right node.
+// 10
+// 20
+// 30
+// 35
+// 45
+// 50
+// 59
+// 60
+// 70
+// 85
+// 100
+// 105
+
+
 
 // For Pre-order
 
@@ -97,6 +130,12 @@ BST.prototype.containsValue = function(value){
 // - Next take the parent value (this.value)
 
 
+
+function log(value){
+  console.log(value);
+}
+
+
 BST.prototype.depthFirstTraversal = function(iteratorFunc, order){
   if(order ==="pre-order") iteratorFunc(this.value);
   if(this.left) this.left.depthFirstTraversal(iteratorFunc,order);
@@ -106,7 +145,7 @@ BST.prototype.depthFirstTraversal = function(iteratorFunc, order){
 };
 
 // console.log(bstObj);
-// console.log(bstObj.depthFirstTraversal(log,"in-order"));
+bstObj.depthFirstTraversal(log,"in-order");
 //console.log(bstObj.depthFirstTraversal(log,"pre-order"));
 // bstObj.depthFirstTraversal(log,"post-order");
 
@@ -117,6 +156,9 @@ BST.prototype.depthFirstTraversal = function(iteratorFunc, order){
 // - Iterate through each element and invoke iteratorFunc with value
 // - If the node has left node, push node's left node to array
 // - If it has right node, push node's right node to array.
+
+
+//Breadth First Traversal (Or Level Order Traversal)
 
 
 
@@ -158,20 +200,6 @@ BST.prototype.getMaxVal = function(){
 }
 
 
-var bstObj = new BST(50);
-
-bstObj.InsertNode(30);
-bstObj.InsertNode(20);
-bstObj.InsertNode(45);
-bstObj.InsertNode(10);
-bstObj.InsertNode(35);
-bstObj.InsertNode(70);
-bstObj.InsertNode(60);
-bstObj.InsertNode(100);
-bstObj.InsertNode(59);
-bstObj.InsertNode(85);
-bstObj.InsertNode(105);
-console.log(bstObj);
 var output = bstObj.containsValue(35);
 // console.log(output);
 // function log(value){
@@ -184,4 +212,4 @@ function logBFS(node){
 }
 //  bstObj.depthFirstTraversal(log,'post-order');
 
- bstObj.breadthFirstTraversal(logBFS);
+ //bstObj.breadthFirstTraversal(logBFS);
